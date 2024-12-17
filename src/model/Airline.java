@@ -1,5 +1,6 @@
 package model;
 
+import java.net.Inet4Address;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -66,6 +67,18 @@ public class Airline {
         for (Flight flight: flights){
             flight.showPassengerNif(nif);
         }
+    }
+
+    //Busca el numero de asiento
+    public Integer getPassengerSeat(int flightNumber, String nif){
+        for (Flight flight: flights){
+            var passenger = flight.findPassenger(nif);
+            var flightNumber1 = findFlightNumber(flightNumber);
+            if (passenger != null && flightNumber1 != null){
+                return passenger.getSeatNumber();
+            }
+        }
+        return null;
     }
 
     public String getName() {
