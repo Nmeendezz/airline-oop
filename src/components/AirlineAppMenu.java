@@ -46,10 +46,10 @@ public class AirlineAppMenu {
                 int flightNumber = scanner.nextInt();
                 scanner.nextLine();
                 var flight = airline.findFlightNumber(flightNumber);
-                System.out.println("Introduce el NIF del pasajero");
-                String nif = scanner.nextLine();
-                var passenger = flight.findPassenger(nif);
-                if (flight.getFlightNumber() == flightNumber) {
+                if (flight != null) {
+                    System.out.println("Introduce el NIF del pasajero");
+                    String nif = scanner.nextLine();
+                    var passenger = flight.findPassenger(nif);
                     if (passenger != null) {
                         System.out.println("El asiento asignado es " + passenger.getSeatNumber());
                     } else {
@@ -63,16 +63,17 @@ public class AirlineAppMenu {
                 int flightNumber = scanner.nextInt();
                 scanner.nextLine();
                 var flight = airline.findFlightNumber(flightNumber);
-                System.out.println("Introduce el NIF del pasajero");
-                String nif = scanner.nextLine();
-                var passenger = flight.findPassenger(nif);
-                System.out.println("Introduce el numero de asiento");
-                Integer seatNumber = scanner.nextInt();
-                scanner.nextLine();
                 if (flight != null) {
+                    System.out.println("Introduce el NIF del pasajero");
+                    String nif = scanner.nextLine();
+                    var passenger = flight.findPassenger(nif);
                     if (passenger != null) {
-                        seatNumber = passenger.getSeatNumber();
-                        System.out.println("El asiento asignado es");
+                        System.out.println("Su asiento asignado es el " + passenger.getSeatNumber());
+                        System.out.println("Introduce el nuevo numero de asiento");
+                        Integer seatNumber = scanner.nextInt();
+                        scanner.nextLine();
+                        passenger.setSeatNumber(seatNumber);
+                        System.out.println("El nuevo asiento asignado es el " + passenger.getSeatNumber());
                     } else {
                         System.out.println("El pasajero no esta registrado en el vuelo");
                     }
@@ -83,6 +84,11 @@ public class AirlineAppMenu {
                 System.out.println("Saliendo...");
             } else {
                 System.out.println("Opcion invalida");
+            }
+            try {
+                Thread.sleep(4000);
+            } catch (Exception e) {
+
             }
         } while (option != 6);
     }

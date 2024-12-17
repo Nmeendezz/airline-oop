@@ -29,7 +29,7 @@ public class AirlineApp1 {
                 System.out.println("Introduce un numero de asiento");
                 Integer seatNumber = scanner.nextInt();
                 scanner.nextLine();
-                seatNumber = passenger.getSeatNumber();
+                passenger.setSeatNumber(seatNumber);
             } else {
                 System.out.println("Error, no existe el pasajero");
             }
